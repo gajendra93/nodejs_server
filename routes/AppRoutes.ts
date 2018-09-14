@@ -7,6 +7,7 @@ let appRoutes = () => {
 
     router.get('/file', App.readFile);
     router.get('/product/:a/:b', App.generateProduct);
+    router.get('/string/:name', App.getNonRepeatingCharacter);
     router.post('/file', App.createFile);
 
     return router;

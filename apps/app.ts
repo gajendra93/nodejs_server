@@ -34,7 +34,32 @@ export class App {
             res.json({ error: { message: 'b is not a number' } });
         }
         else {
-            res.json({ product: a * b });
+            res.json({ data: { product: a * b } });
+        }
+    }
+
+    // Get the first non-repeating character
+    public static getNonRepeatingCharacter = (req: any, res: any) => {
+        if (!_.get(req, 'params.name')) return res.status(400).json({ error: { message: 'Missing name in req.params' } });
+
+        let { params: { name } } = req;
+
+        let countArr: number[] = [];
+
+        for (let i = 0; i < name.length; i++) {
+            let cnt: number = 0;
+            for (let j = 0; j < name.length; j++) {
+                if (name[i] === name[j])
+                    cnt++;
+            }
+            countArr[i] = cnt;
+        }
+
+        if (countArr.indexOf(1) > -1) {
+            res.json({ data: { message: `First non-repeating character in ${name} is ${name[countArr.indexOf(1)]}` } });
+        }
+        else {
+            res.json({ error: { message: `There is no non-repeating character present in ${name}` } });
         }
     }
 
@@ -46,7 +71,7 @@ export class App {
 
         fs.writeFile('./data/content.txt', data, (error: Error) => {
             if (!error) {
-                res.json({ data: {message: 'Data has been saved to the file' }});
+                res.json({ data: { message: 'Data has been saved to the file' } });
             }
             else {
                 res.json({ error: { message: JSON.stringify(error) } });

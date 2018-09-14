@@ -1,5 +1,5 @@
-let express    = require('express'),
-    cors       = require('cors'),
+let express = require('express'),
+    cors = require('cors'),
     bodyParser = require('body-parser');
 
 let config = require('./config.json');
@@ -13,7 +13,7 @@ app.use('/', require('./routes/AppRoutes')());
 
 app.use((error: any, req: any, res: any, next: any) => {
     if (error instanceof SyntaxError && 'body' in error) {
-        res.status(400).json({ error: { message: 'Invalid request' }});
+        res.status(400).json({ error: { message: 'Invalid request' } });
     }
     else next();
 })

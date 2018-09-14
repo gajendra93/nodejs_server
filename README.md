@@ -13,7 +13,8 @@ A NodeJS Server performing the following operations.
 ## API description:
 1. GET /file => Read file from the local directory.
 2. GET /product/:a/:b => Takes two parameters and produces their product.
-3. POST /file => Accepts file content in req.body and save data to the file.
+3. GET /string/:name => Takes one parameter as name and return the first non-repeating character.
+4. POST /file => Accepts file content in req.body and save data to the file.
     Eg: req.body = {
         "data": "Data to be saved"
     }
